@@ -2,6 +2,8 @@
 
 NetRequest is a browser-based network inspector that captures requests and responses for a target URL using Playwright in a backend service, then streams events to a frontend UI over WebSocket.
 
+![NetRequest UI Screenshot](/frontend/screenshot.png)
+
 ## What This Repository Contains
 
 - `backend/main.py`: FastAPI WebSocket service that launches headless Chromium and captures network activity.
