@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>NetRequest - Network Inspector</title>
+        <link rel="stylesheet" href="style.css?v1.0.0">
+    </head>
+    <body>
+        <header>
+            <div class="header-row">
+                <div class="logo">NetRequest</div>
+                <div class="conn-indicator" id="connIndicator">
+                    <div class="conn-dot" id="connDot"></div>
+                    <span id="connLabel" class="conn-label">IDLE</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="config-panel">
+            <div class="server-row">
+                <div class="server-row__url">
+                    <div class="label">Backend URL</div>
+                    <input class="input" id="serverInput" type="text" placeholder="https://example.com" value="" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                </div>
+                <div class="server-row__key">
+                    <div class="label">API Key</div>
+                    <input class="input" id="apiKeyInput" type="password" placeholder="x-api-key" value="" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                </div>
+            </div>
+
+            <div class="url-row">
+                <div class="input-wrap">
+                    <div class="label">Target URL</div>
+                    <input class="input" id="targetUrl" type="text" placeholder="https://example.com" autocomplete="off" autocapitalize="off" spellcheck="false" />
+                </div>
+                <button class="btn btn-primary" id="inspectBtn" onclick="startInspection()">INSPECT</button>
+                <button class="btn btn-ghost" onclick="clearAll()">CLEAR</button>
+            </div>
+
+            <div class="filter-row">
+                <span class="filter-label">SHOW:</span>
+                <button class="chip active" data-type="all" onclick="toggleFilter(this)">ALL</button>
+                <button class="chip" data-type="fetch" onclick="toggleFilter(this)">FETCH</button>
+                <button class="chip" data-type="xhr" onclick="toggleFilter(this)">XHR</button>
+                <button class="chip" data-type="document" onclick="toggleFilter(this)">DOC</button>
+                <button class="chip" data-type="script" onclick="toggleFilter(this)">JS</button>
+                <button class="chip" data-type="stylesheet" onclick="toggleFilter(this)">CSS</button>
+                <button class="chip" data-type="image" onclick="toggleFilter(this)">IMG</button>
+                <button class="chip" data-type="font" onclick="toggleFilter(this)">FONT</button>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat">REQUESTS <span class="stat-val" id="sTotal">0</span></div>
+            <div class="stat">2xx <span class="stat-val green" id="sOk">0</span></div>
+            <div class="stat">4xx/5xx <span class="stat-val red" id="sErr">0</span></div>
+            <div class="stat">FAILED <span class="stat-val red" id="sFailed">0</span></div>
+            <div class="stat">AVG <span class="stat-val" id="sAvg">—</span></div>
+            <div class="stat">TOTAL SIZE <span class="stat-val yellow" id="sSize">—</span></div>
+        </div>
+
+        <div class="list-wrap" id="listWrap">
+            <div class="status-log" id="statusLog"></div>
+
+            <div class="empty-state visible" id="emptyState">
+                <p>Enter your backend URL and a target site, then hit INSPECT.</p>
+            </div>
+        </div>
+
+        <script src="./script.js?v1.0.0"></script>
+    </body>
+</html>
